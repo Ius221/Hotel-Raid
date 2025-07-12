@@ -26,7 +26,7 @@ restartBtn.addEventListener('click', () => {
 
     removeSelection();
     addRandomThief();
-
+    checkThief();
 
 
 })
