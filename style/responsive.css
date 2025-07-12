@@ -1,0 +1,135 @@
+/***********/
+/* 800 px */
+/*********/
+
+@media(max-width:50em) {
+    html {
+        font-size: 56.25%;
+    }
+
+    .game-borad {
+        margin-bottom: 2.4rem;
+    }
+
+    .container {
+        max-width: 70rem;
+        margin: 5rem auto;
+    }
+
+    .disc {
+        height: 11.4rem;
+        width: 11.4rem;
+    }
+
+    .game-play-area {
+        padding: 2.8rem;
+    }
+
+    .screen {
+        padding: 0;
+    }
+
+    .grid {
+        gap: 0;
+        row-gap: 2.2rem;
+    }
+}
+
+/***********/
+/* 656 px */
+/*********/
+@media(max-width:41em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container {
+        max-width: 60rem;
+        /* margin: 5rem auto; */
+    }
+
+    .board-screen {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .page-title img {
+        height: 4.8rem;
+        width: 4.8rem;
+    }
+
+    .game-borad {
+        flex-direction: column;
+        margin: 0;
+        margin-left: 4.8rem;
+    }
+
+    .heading-primary {
+        font-size: 3.6rem;
+    }
+
+    .supporting-content {
+        font-size: 1.2rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    .game-play-area {
+        padding: 2.8rem;
+    }
+
+    .player-guide {
+        font-size: 1.4rem;
+    }
+
+    .disc {
+        height: 9.4rem;
+        width: 9.4rem;
+    }
+}
+
+
+/***********/
+/* 496 px */
+/*********/
+@media(max-width:31rem) {
+    html {
+        font-size: 43.75%;
+    }
+
+    .container {
+        max-width: 50rem;
+        /* margin: 5rem auto; */
+    }
+
+    .grid {
+        gap: 2px;
+    }
+
+    .game-borad {
+        margin-left: -3rem;
+    }
+
+    .heading-primary {
+        font-size: 3.2rem;
+    }
+
+    .supporting-content {
+        margin: .5rem auto;
+        font-size: 1rem;
+    }
+
+    .player-guide {
+        font-size: 1.2rem;
+    }
+
+    .disc {
+        height: 8.4rem;
+        width: 8.4rem;
+    }
+}
