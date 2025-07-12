@@ -169,10 +169,11 @@ body {
     padding: 2.4rem;
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 1.6rem;
     align-items: center;
     border-radius: 1.4rem;
-    transition: all .3s;
+    transition: all .5s;
 }
 
 
@@ -180,6 +181,8 @@ body {
 .game-started:hover,
 .game-started:active {
     transform: scale(1.1);
+    cursor: pointer;
+
 }
 
 .thief-room {
@@ -191,6 +194,11 @@ body {
     background: linear-gradient(145deg, rgba(92, 30, 59, 1), rgba(47, 13, 28, 1));
     color: rgba(255, 179, 193, 1);
     /* light pink for contrast */
+}
+
+.js-room {
+    background: linear-gradient(145deg, rgba(62, 58, 89, 1), rgba(41, 38, 63, 1));
+    box-shadow: 0 0 10px rgba(160, 140, 255, 0.3);
 
 }
 
