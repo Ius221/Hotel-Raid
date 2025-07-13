@@ -110,7 +110,7 @@ function handleDiscClick(e) {
         score += 15;
     } else {
         disc.classList.add('blank-room');
-        disc.textContent = "Oops!!";
+        disc.textContent = "Oops..";
         score -= 2;
     }
     moves--;
@@ -128,9 +128,18 @@ function handleDiscClick(e) {
 
     // End game conditions
     if (thiefLeft === 0) {
+
         setGameMessage("won");
     } else if (moves === 0) {
+        // Add 'js-room' class to all discs that have 'thief' class but not 'thief-room'
+        document.querySelectorAll('.disc').forEach(disc => {
+            if (disc.classList.contains('thief') && !disc.classList.contains('thief-room')) {
+                disc.classList.add('js-room');
+                disc.textContent = "Thief !!";
+            }
+        });
         setGameMessage("lost");
+
     }
 }
 
@@ -139,6 +148,10 @@ function setGameMessage(status) {
 
     guide.classList.add('hidden');
     restart.classList.remove('hidden');
+
+    document.querySelectorAll('.disc').forEach(disc => {
+        disc.classList.remove('game-started');
+    });
 
     const winMessages = [
         "Case closed! All 5 thieves are behind bars! 🚔🔒",
@@ -163,10 +176,9 @@ function setGameMessage(status) {
         "They may have escaped, but your comeback will be legendary! 🏅"
     ];
 
-    if (status === 'won') {
-        gameStatus.textContent = winMessages[Math.floor(Math.random() * winMessages.length)];
-    } else {
-        gameStatus.textContent = lostMessages[Math.floor(Math.random() * lostMessages.length)];
-    }
+    gameStatus.textContent = (status === 'won')
+        ? winMessages[Math.floor(Math.random() * winMessages.length)]
+        : lostMessages[Math.floor(Math.random() * lostMessages.length)];
+
 
 }
