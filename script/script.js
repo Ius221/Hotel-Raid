@@ -5,6 +5,9 @@ const caughtNum = document.querySelector('.num-caught');
 const movesNum = document.querySelector('.num-moves');
 const scoreNum = document.querySelector('.num-score');
 const allDisc = document.querySelectorAll('.disc');
+const guide = document.querySelector('.guide');
+const gameStatus = document.querySelector('.game-status')
+const restart = document.querySelector('.btn-restart');
 
 let gameActive = false;
 
@@ -14,17 +17,25 @@ startBtn.addEventListener('click', () => {
     startGame();
 });
 
+restart.addEventListener('click', () => {
+    startGame();
+})
+
 restartBtn.addEventListener('click', () => {
     startGame();
 });
 
 function startGame() {
+    restart.classList.add('hidden');
+    gameStatus.textContent = '';
+    guide.classList.remove('hidden');
     gameActive = true;
     setBoardZero();
     setRoom();
     removeSelection();
     addRandomThief();
     setupDiscListeners();
+    setBoardDesc();
 }
 
 // Reset all counters
@@ -33,6 +44,14 @@ function setBoardZero() {
     movesNum.textContent = 7;
     caughtNum.textContent = 0;
     thiefNum.textContent = 5;
+}
+
+const setBoardDesc = function () {
+    guide.innerHTML = `<strong>Daring Heist:</strong> Hotel Raid is an exciting detective - style game where you play as a sharp-witted police officer tracking down five elusive  thieves hiding in a mysterious 15 - room hotel.Each thief is hidden in a separate room, and it’s up to you to raid the right ones, follow clues, and bring them to justice. Think fast, raid smart — the city is counting on you!
+        <br> <br>
+            <strong>
+                🎯 Are you sharp enough?
+            </strong>`;
 }
 
 // Set room labels and base class
@@ -109,10 +128,45 @@ function handleDiscClick(e) {
 
     // End game conditions
     if (thiefLeft === 0) {
-        gameActive = false;
-        setTimeout(() => alert('Congratulations! You caught all the thieves!'), 100);
+        setGameMessage("won");
     } else if (moves === 0) {
-        gameActive = false;
-        setTimeout(() => alert('Game Over! You ran out of moves.'), 100);
+        setGameMessage("lost");
     }
+}
+
+function setGameMessage(status) {
+    gameActive = false;
+
+    guide.classList.add('hidden');
+    restart.classList.remove('hidden');
+
+    const winMessages = [
+        "Case closed! All 5 thieves are behind bars! 🚔🔒",
+        "You nailed it, detective! Justice has been served! 🕵️‍♀️⚖️",
+        "All suspects apprehended — you're the hero of the force! 🏅",
+        "Flawless operation. The city sleeps safe tonight. 🌃💼",
+        "Mission complete! You outsmarted them all! 🧠🚨",
+        "Crime doesn't pay — especially when you're on the case! 🕶️",
+        "Nice work, sleuth! Not a single thief escaped! 🔍🏆",
+        "You just taught those crooks a lesson they won’t forget. 🎓💥",
+        "The station's proud of you! Time to celebrate! 🎉🥳"
+    ];
+
+    const lostMessages = [
+        "The thieves got away this time... but they won't next round! 🚨",
+        "You're close, detective! They're slipping, but not for long. 🕵️‍♂️",
+        "Even the best miss a case. Regroup and try again! 🗺️",
+        "They outsmarted you this round — time to outsmart them! 🧠",
+        "Almost had them! One more try and those crooks are toast! 🔍",
+        "You're learning their tricks... next time, they'll slip up! 🧤",
+        "Take a breather, dust off your badge, and try again! 💨",
+        "They may have escaped, but your comeback will be legendary! 🏅"
+    ];
+
+    if (status === 'won') {
+        gameStatus.textContent = winMessages[Math.floor(Math.random() * winMessages.length)];
+    } else {
+        gameStatus.textContent = lostMessages[Math.floor(Math.random() * lostMessages.length)];
+    }
+
 }

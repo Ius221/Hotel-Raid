@@ -41,6 +41,7 @@ body {
     font-family: "Amarante", serif;
     font-size: 4.8rem;
     color: #bbb;
+    position: relative;
     text-transform: capitalize;
 }
 
@@ -108,7 +109,7 @@ body {
     text-align: start;
     font-weight: 500;
     box-shadow: 1px 1px 25px #999;
-
+    transition: all 0.5s;
 }
 
 /**********************/
@@ -252,4 +253,24 @@ body {
 
 .rule:nth-child(odd) {
     border-left: 5px solid red;
+}
+
+.btn-restart {
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #91ca9f;
+    text-transform: capitalize;
+    padding: 1.8rem 2.4rem;
+    font-weight: 600;
+}
+
+.btn-restart:hover {
+    background-color: #71b280;
+}
+
+.game-status {
+    font-weight: 600;
+    font-size: large;
 }
