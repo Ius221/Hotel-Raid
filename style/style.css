@@ -29,6 +29,7 @@ body {
 }
 
 .hidden {
+    transition: all .3s;
     display: none;
 }
 
@@ -256,6 +257,7 @@ body {
 }
 
 .btn-restart {
+    font-family: "Quicksand", sans-serif;
     margin-top: 10px;
     border: none;
     border-radius: 5px;
@@ -272,5 +274,6 @@ body {
 
 .game-status {
     font-weight: 600;
-    font-size: large;
+    font-size: 1.8rem;
+    transition: all 0.4s;
 }

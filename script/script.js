@@ -10,6 +10,7 @@ const gameStatus = document.querySelector('.game-status')
 const restart = document.querySelector('.btn-restart');
 
 let gameActive = false;
+let consecutive = 0;
 
 startBtn.addEventListener('click', () => {
     startBtn.style.display = "none";
@@ -30,12 +31,12 @@ function startGame() {
     gameStatus.textContent = '';
     guide.classList.remove('hidden');
     gameActive = true;
+    consecutive = 0; // Reset consecutive counter for new game
     setBoardZero();
     setRoom();
     removeSelection();
     addRandomThief();
     setupDiscListeners();
-    setBoardDesc();
 }
 
 // Reset all counters
@@ -44,14 +45,6 @@ function setBoardZero() {
     movesNum.textContent = 7;
     caughtNum.textContent = 0;
     thiefNum.textContent = 5;
-}
-
-const setBoardDesc = function () {
-    guide.innerHTML = `<strong>Daring Heist:</strong> Hotel Raid is an exciting detective - style game where you play as a sharp-witted police officer tracking down five elusive  thieves hiding in a mysterious 15 - room hotel.Each thief is hidden in a separate room, and it’s up to you to raid the right ones, follow clues, and bring them to justice. Think fast, raid smart — the city is counting on you!
-        <br> <br>
-            <strong>
-                🎯 Are you sharp enough?
-            </strong>`;
 }
 
 // Set room labels and base class
@@ -105,6 +98,7 @@ function handleDiscClick(e) {
     if (disc.classList.contains('thief')) {
         disc.classList.add('thief-room');
         disc.textContent = "Caught!!";
+        consecutive++;
         caught++;
         thiefLeft--;
         score += 15;
@@ -112,6 +106,11 @@ function handleDiscClick(e) {
         disc.classList.add('blank-room');
         disc.textContent = "Oops..";
         score -= 2;
+        consecutive = 0;
+    }
+    if (consecutive == 2) {
+        moves += 1;
+        consecutive = 0;
     }
     moves--;
 
